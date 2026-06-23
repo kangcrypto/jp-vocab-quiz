@@ -32,6 +32,11 @@ export default async function Home({ searchParams }: Props) {
         {allChapters.map((c) => {
           const active = c.slug === selected?.slug;
           const empty = c.vocab.length === 0;
+          // Pull the chapter number out of the slug (e.g. "bab-3" -> 3) so the
+          // tab label stays in sync with whatever number Boss puts in vocab.ts.
+          const numMatch = c.slug.match(/(\d+)/);
+          const chapterNum = numMatch ? numMatch[1] : null;
+          const label = chapterNum ? `Bab ${chapterNum}` : c.title;
           return (
             <a
               key={c.slug}
@@ -45,7 +50,7 @@ export default async function Home({ searchParams }: Props) {
               }`}
               title={c.jp_title}
             >
-              {c.title.replace(/^Bab \d+ — /, "")}
+              {label}
               <span className="ml-1.5 text-xs opacity-70">
                 ({c.vocab.length})
               </span>
