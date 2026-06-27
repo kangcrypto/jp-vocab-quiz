@@ -1,26 +1,74 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Modern playful palette: warm cream + sakura + indigo */
+  --background: #fef7f4;        /* soft warm cream */
+  --background-grad-start: #fdf2f8;  /* pink-50 */
+  --background-grad-end: #eef2ff;    /* indigo-50 */
+  --foreground: #1e1b4b;        /* indigo-950 */
+  --card: #ffffff;
+  --card-ring: #e0e7ff;         /* indigo-200 */
+  --accent: #e11d48;            /* rose-600 */
+  --accent-2: #7c3aed;          /* violet-600 */
+  --success: #059669;           /* emerald-600 */
+  --success-bg: #d1fae5;        /* emerald-100 */
+  --error: #dc2626;             /* red-600 */
+  --error-bg: #fee2e2;          /* red-100 */
+  --muted: #6b7280;             /* gray-500 */
+  --muted-bg: #f3f4f6;          /* gray-100 */
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --color-card: var(--card);
+  --color-card-ring: var(--card-ring);
+  --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --color-success: var(--success);
+  --color-success-bg: var(--success-bg);
+  --color-error: var(--error);
+  --color-error-bg: var(--error-bg);
+  --color-muted: var(--muted);
+  --color-muted-bg: var(--muted-bg);
+  --font-sans: var(--font-poppins), var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+body {
+  background: linear-gradient(135deg, var(--background-grad-start) 0%, var(--background-grad-end) 100%);
+  min-height: 100vh;
+  color: var(--foreground);
+  font-family: var(--font-poppins), var(--font-geist-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Playful bounce-in for feedback cards */
+@keyframes bounce-in {
+  0%   { transform: scale(0.85); opacity: 0; }
+  60%  { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
 }
+@keyframes pop {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-2deg); }
+  75% { transform: rotate(2deg); }
+}
+
+.animate-bounce-in { animation: bounce-in 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+.animate-pop { animation: pop 0.3s ease-out; }
+.animate-wiggle { animation: wiggle 0.4s ease-in-out; }
+
+/* Custom scrollbar to feel modern */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--card-ring);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--accent-2); }

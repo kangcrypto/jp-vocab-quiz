@@ -11,19 +11,23 @@ export default async function Home({ searchParams }: Props) {
   const selected =
     allChapters.find((c) => c.slug === selectedSlug) ?? allChapters[0];
 
+  const activeCount = allChapters.filter((c) => c.vocab.length > 0).length;
+
   return (
     <main className="mx-auto w-full max-w-2xl px-4 py-8 sm:py-12">
       {/* Header */}
       <header className="mb-8 text-center">
-        <p className="text-xs uppercase tracking-[0.3em] text-rose-600">
-          Minna no Nihongo · Seri 2
-        </p>
-        <h1 className="mt-2 text-3xl font-bold text-zinc-900 sm:text-4xl">
+        <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-rose-50 via-pink-50 to-indigo-50 px-3 py-1 text-xs font-bold uppercase tracking-widest text-rose-600 ring-1 ring-rose-100">
+          <span>🌸</span>
+          <span className="font-nunito">Minna no Nihongo · Seri 2</span>
+        </div>
+        <h1 className="mt-3 bg-gradient-to-br from-indigo-950 via-violet-700 to-rose-600 bg-clip-text text-4xl font-extrabold tracking-tight text-transparent sm:text-5xl">
           🇯🇵 Kotoba Quiz
         </h1>
-        <p className="mt-2 text-sm text-zinc-500">
-          Tebak arti kosakata Jepang. Total {totalVocabCount} kata terdaftar
-          dari {allChapters.filter((c) => c.vocab.length > 0).length} bab.
+        <p className="mt-2 text-sm text-slate-500">
+          Tebak arti kosakata Jepang.{" "}
+          <span className="font-bold text-indigo-700">{totalVocabCount}</span> kata dari{" "}
+          <span className="font-bold text-indigo-700">{activeCount}</span> bab.
         </p>
       </header>
 
@@ -32,8 +36,7 @@ export default async function Home({ searchParams }: Props) {
         {allChapters.map((c) => {
           const active = c.slug === selected?.slug;
           const empty = c.vocab.length === 0;
-          // Pull the chapter number out of the slug (e.g. "bab-3" -> 3) so the
-          // tab label stays in sync with whatever number Boss puts in vocab.ts.
+          // Pull chapter number from slug (bab-3 -> 3)
           const numMatch = c.slug.match(/(\d+)/);
           const chapterNum = numMatch ? numMatch[1] : null;
           const label = chapterNum ? `Bab ${chapterNum}` : c.title;
@@ -41,17 +44,21 @@ export default async function Home({ searchParams }: Props) {
             <a
               key={c.slug}
               href={`/?bab=${c.slug}`}
-              className={`rounded-full px-4 py-1.5 text-sm ring-1 transition ${
+              className={`group inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-sm font-semibold ring-1 transition ${
                 active
-                  ? "bg-zinc-900 text-white ring-zinc-900"
+                  ? "bg-gradient-to-r from-indigo-600 to-violet-600 text-white ring-indigo-600 shadow-md shadow-indigo-300/50"
                   : empty
-                    ? "bg-zinc-50 text-zinc-400 ring-zinc-200"
-                    : "bg-white text-zinc-700 ring-zinc-300 hover:bg-zinc-50"
+                    ? "bg-slate-50 text-slate-400 ring-slate-200"
+                    : "bg-white text-slate-700 ring-slate-200 hover:scale-105 hover:bg-rose-50 hover:ring-rose-200 hover:text-rose-700"
               }`}
               title={c.jp_title}
             >
-              {label}
-              <span className="ml-1.5 text-xs opacity-70">
+              <span>{label}</span>
+              <span
+                className={`text-xs ${
+                  active ? "opacity-90" : "opacity-60"
+                }`}
+              >
                 ({c.vocab.length})
               </span>
             </a>
@@ -63,12 +70,12 @@ export default async function Home({ searchParams }: Props) {
       {selected ? <QuizPlayer chapter={selected} /> : null}
 
       {/* Footer */}
-      <footer className="mt-12 text-center text-xs text-zinc-400">
+      <footer className="mt-12 text-center text-xs text-slate-400">
         <p>
           Belajar mandiri itu indah. がんばって！ •{" "}
           <a
-            href="https://github.com/fleaksead/jp-vocab-quiz"
-            className="underline-offset-2 hover:underline"
+            href="https://github.com/kangcrypto/jp-vocab-quiz"
+            className="font-semibold text-indigo-600 underline-offset-2 hover:underline"
           >
             source
           </a>
