@@ -31,39 +31,44 @@ export default async function Home({ searchParams }: Props) {
         </p>
       </header>
 
-      {/* Chapter selector */}
-      <nav className="mb-6 flex flex-wrap justify-center gap-2">
-        {allChapters.map((c) => {
-          const active = c.slug === selected?.slug;
-          const empty = c.vocab.length === 0;
-          // Pull chapter number from slug (bab-3 -> 3)
-          const numMatch = c.slug.match(/(\d+)/);
-          const chapterNum = numMatch ? numMatch[1] : null;
-          const label = chapterNum ? `Bab ${chapterNum}` : c.title;
-          return (
-            <a
-              key={c.slug}
-              href={`/?bab=${c.slug}`}
-              className={`group inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-sm font-semibold ring-1 transition ${
-                active
-                  ? "bg-gradient-to-r from-indigo-600 to-violet-600 text-white ring-indigo-600 shadow-md shadow-indigo-300/50"
-                  : empty
-                    ? "bg-slate-50 text-slate-400 ring-slate-200"
-                    : "bg-white text-slate-700 ring-slate-200 hover:scale-105 hover:bg-rose-50 hover:ring-rose-200 hover:text-rose-700"
-              }`}
-              title={c.jp_title}
-            >
-              <span>{label}</span>
-              <span
-                className={`text-xs ${
-                  active ? "opacity-90" : "opacity-60"
-                }`}
-              >
-                ({c.vocab.length})
-              </span>
-            </a>
-          );
-        })}
+      {/* Chapter selector — sticky so users can switch bab at any time
+          (mid-quiz, on result, or while scrolling on a phone). */}
+      <nav className="sticky top-2 z-10 mb-6 -mx-4 sm:mx-0">
+        <div className="mx-4 rounded-full bg-white/85 px-3 py-2 shadow-md ring-1 ring-rose-100 backdrop-blur sm:mx-0">
+          <div className="flex flex-nowrap gap-2 overflow-x-auto pb-1 sm:flex-wrap sm:justify-center sm:overflow-visible">
+            {allChapters.map((c) => {
+              const active = c.slug === selected?.slug;
+              const empty = c.vocab.length === 0;
+              // Pull chapter number from slug (bab-3 -> 3)
+              const numMatch = c.slug.match(/(\d+)/);
+              const chapterNum = numMatch ? numMatch[1] : null;
+              const label = chapterNum ? `Bab ${chapterNum}` : c.title;
+              return (
+                <a
+                  key={c.slug}
+                  href={`/?bab=${c.slug}`}
+                  className={`shrink-0 inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-sm font-semibold ring-1 transition ${
+                    active
+                      ? "bg-gradient-to-r from-indigo-600 to-violet-600 text-white ring-indigo-600 shadow-md shadow-indigo-300/50"
+                      : empty
+                        ? "bg-slate-50 text-slate-400 ring-slate-200"
+                        : "bg-white text-slate-700 ring-slate-200 hover:scale-105 hover:bg-rose-50 hover:ring-rose-200 hover:text-rose-700"
+                  }`}
+                  title={c.jp_title}
+                >
+                  <span>{label}</span>
+                  <span
+                    className={`text-xs ${
+                      active ? "opacity-90" : "opacity-60"
+                    }`}
+                  >
+                    ({c.vocab.length})
+                  </span>
+                </a>
+              );
+            })}
+          </div>
+        </div>
       </nav>
 
       {/* Quiz */}

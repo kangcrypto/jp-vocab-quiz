@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { Chapter, Question, AnswerRecord } from "@/data/types";
 import { buildQuestions } from "@/data/quiz";
 
@@ -30,6 +30,12 @@ export default function QuizPlayer({ chapter }: Props) {
   const [streak, setStreak] = useState(0);
   const [bestStreak, setBestStreak] = useState(0);
 
+  // Refs to guard against double-tap / rapid taps on touch devices (HP).
+  // Touch events can fire `onClick` twice in quick succession before React
+  // batches the state update, so we lock the handlers until the state catches up.
+  const chooseLockRef = useRef(false);
+  const nextLockRef = useRef(false);
+
   const start = useCallback(
     (s: number, n: number) => {
       const built = buildQuestions(chapter, { count: n, seed: s });
@@ -39,16 +45,35 @@ export default function QuizPlayer({ chapter }: Props) {
       setHistory([]);
       setShowHint(false);
       setStreak(0);
+      chooseLockRef.current = false;
+      nextLockRef.current = false;
       setPhase("playing");
     },
     [chapter]
   );
 
+  // Always start from the top whenever the phase changes (or the chapter changes).
+  // Without this, on a small phone viewport the user lands mid-page and has to
+  // scroll up to see the progress bar / chapter chip row.
   useEffect(() => {
-    if (phase === "ready" && seed === 0) {
-      // first time, leave at "ready" so user can adjust count first
+    if (typeof window !== "undefined") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
-  }, [phase, seed]);
+  }, [phase, chapter.slug]);
+
+  // If the chapter changes mid-quiz (user taps a different bab chip), reset to ready.
+  useEffect(() => {
+    setPhase("ready");
+    setQuestions([]);
+    setCurrent(0);
+    setChosen(null);
+    setHistory([]);
+    setShowHint(false);
+    setStreak(0);
+    setBestStreak(0);
+    chooseLockRef.current = false;
+    nextLockRef.current = false;
+  }, [chapter.slug]);
 
   const q = questions[current];
   const total = questions.length;
@@ -58,7 +83,12 @@ export default function QuizPlayer({ chapter }: Props) {
   );
 
   function handleChoose(idx: number) {
+    // Ref-lock guard: defeats double-tap on touch screens where two click events
+    // can fire before React commits `chosen`. Without this, history could
+    // accumulate duplicate AnswerRecords for the same question.
+    if (chooseLockRef.current) return;
     if (chosen !== null || !q) return;
+    chooseLockRef.current = true;
     setChosen(idx);
     const isCorrect = idx === q.correctIndex;
     const record: AnswerRecord = {
@@ -70,7 +100,11 @@ export default function QuizPlayer({ chapter }: Props) {
       chosenIndex: idx,
       correct: isCorrect,
     };
-    setHistory((h) => [...h, record]);
+    setHistory((h) => {
+      // Dedupe: never append a second record for the same vocabId in this run.
+      if (h.some((r) => r.vocabId === record.vocabId)) return h;
+      return [...h, record];
+    });
     setStreak((s) => {
       const next = isCorrect ? s + 1 : 0;
       setBestStreak((b) => Math.max(b, next));
@@ -79,16 +113,31 @@ export default function QuizPlayer({ chapter }: Props) {
   }
 
   function handleNext() {
+    if (nextLockRef.current) return;
+    if (chosen === null) return; // can't advance without an answer
+    nextLockRef.current = true;
     if (current + 1 >= total) {
       setPhase("result");
+      // Allow the result phase to render, then release the lock so
+      // a subsequent restart / drill action can fire.
+      setTimeout(() => {
+        nextLockRef.current = false;
+      }, 0);
       return;
     }
     setCurrent((c) => c + 1);
     setChosen(null);
     setShowHint(false);
+    // Release the lock after the next paint so the freshly enabled choice
+    // buttons can't be triggered by a tap that was meant for this button.
+    setTimeout(() => {
+      nextLockRef.current = false;
+    }, 250);
   }
 
   function handleRestart() {
+    chooseLockRef.current = false;
+    nextLockRef.current = false;
     setSeed(Date.now());
     setCount(chapter.vocab.length);
     setPhase("ready");
@@ -184,8 +233,9 @@ export default function QuizPlayer({ chapter }: Props) {
 
     return (
       <div className="space-y-5">
-        {/* Progress + streak card */}
-        <div className="rounded-2xl bg-white/80 p-4 shadow-sm ring-1 ring-indigo-100 backdrop-blur">
+        {/* Progress + streak card — sticky so it stays visible while scrolling
+            the question card on small phone viewports. */}
+        <div className="sticky top-2 z-20 rounded-2xl bg-white/90 p-4 shadow-md ring-1 ring-indigo-100 backdrop-blur">
           <div className="flex items-center justify-between text-xs font-semibold text-slate-500">
             <span>
               Soal <span className="text-indigo-700">{current + 1}</span> / {total}
@@ -435,6 +485,8 @@ export default function QuizPlayer({ chapter }: Props) {
               const filtered: Question[] = questions.filter((qq) =>
                 onlyWrong.includes(qq.vocabId)
               );
+              chooseLockRef.current = false;
+              nextLockRef.current = false;
               if (filtered.length === 0) {
                 handleRestart();
                 return;
