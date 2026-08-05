@@ -128,10 +128,13 @@ export default function QuizPlayer({ chapter }: Props) {
     setCurrent((c) => c + 1);
     setChosen(null);
     setShowHint(false);
-    // Release the lock after the next paint so the freshly enabled choice
-    // buttons can't be triggered by a tap that was meant for this button.
+    // Release both locks after the next paint so the freshly enabled choice
+    // buttons can't be triggered by a tap that was meant for this button,
+    // AND the choose-lock from the previous question doesn't block the first
+    // tap on the new question (bug: previously only nextLockRef was released).
     setTimeout(() => {
       nextLockRef.current = false;
+      chooseLockRef.current = false;
     }, 250);
   }
 
