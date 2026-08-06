@@ -19,9 +19,9 @@ export type Chapter = {
 
 export type Question = {
   vocabId: string;
-  prompt: string;        // kanji (JP → ID direction)
-  kana: string;          // hiragana reading, shown as hint
-  romaji?: string;       // romaji, optional extra hint
+  prompt: string;        // kana-only prompt (JP → ID direction)
+  kana: string;          // kana-only reading, kept for result/history
+  romaji: string;        // beginner-friendly reading shown below the prompt
   choices: string[];     // 4 ID meanings
   correctIndex: number;  // index into `choices`
 };
@@ -30,6 +30,7 @@ export type AnswerRecord = {
   vocabId: string;
   prompt: string;
   kana: string;
+  romaji: string;
   choices: string[];
   correctIndex: number;
   chosenIndex: number;

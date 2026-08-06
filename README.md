@@ -8,7 +8,7 @@ Web app latihan vocab bahasa Jepang berbasis **Minna no Nihongo Seri 2 (revisi 2
 - **4-pilihan ganda** (JP → ID)
 - **Random shuffle** deterministik per sesi
 - **Drill ulang** vocab yang salah
-- **Hint bacaan** hiragana + romaji (opsional)
+- **Prompt ramah pemula**: hiragana/katakana tanpa kanji + romaji di bawahnya
 - **Progress bar** + counter benar live
 - **Result page** dengan grade (🏆 🎉 💪 📚)
 

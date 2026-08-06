@@ -72,7 +72,7 @@ export default async function Home({ searchParams }: Props) {
       </nav>
 
       {/* Quiz */}
-      {selected ? <QuizPlayer chapter={selected} /> : null}
+      {selected ? <QuizPlayer key={selected.slug} chapter={selected} /> : null}
 
       {/* Footer */}
       <footer className="mt-12 text-center text-xs text-slate-400">

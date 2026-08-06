@@ -20,13 +20,11 @@ const CHOICE_THEMES = [
 
 export default function QuizPlayer({ chapter }: Props) {
   const [phase, setPhase] = useState<Phase>("ready");
-  const [seed, setSeed] = useState<number>(0);
   const [count, setCount] = useState<number>(chapter.vocab.length);
   const [questions, setQuestions] = useState<Question[]>([]);
   const [current, setCurrent] = useState(0);
   const [chosen, setChosen] = useState<number | null>(null);
   const [history, setHistory] = useState<AnswerRecord[]>([]);
-  const [showHint, setShowHint] = useState(false);
   const [streak, setStreak] = useState(0);
   const [bestStreak, setBestStreak] = useState(0);
 
@@ -43,7 +41,6 @@ export default function QuizPlayer({ chapter }: Props) {
       setCurrent(0);
       setChosen(null);
       setHistory([]);
-      setShowHint(false);
       setStreak(0);
       chooseLockRef.current = false;
       nextLockRef.current = false;
@@ -60,20 +57,6 @@ export default function QuizPlayer({ chapter }: Props) {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   }, [phase, chapter.slug]);
-
-  // If the chapter changes mid-quiz (user taps a different bab chip), reset to ready.
-  useEffect(() => {
-    setPhase("ready");
-    setQuestions([]);
-    setCurrent(0);
-    setChosen(null);
-    setHistory([]);
-    setShowHint(false);
-    setStreak(0);
-    setBestStreak(0);
-    chooseLockRef.current = false;
-    nextLockRef.current = false;
-  }, [chapter.slug]);
 
   const q = questions[current];
   const total = questions.length;
@@ -95,6 +78,7 @@ export default function QuizPlayer({ chapter }: Props) {
       vocabId: q.vocabId,
       prompt: q.prompt,
       kana: q.kana,
+      romaji: q.romaji,
       choices: q.choices,
       correctIndex: q.correctIndex,
       chosenIndex: idx,
@@ -127,7 +111,6 @@ export default function QuizPlayer({ chapter }: Props) {
     }
     setCurrent((c) => c + 1);
     setChosen(null);
-    setShowHint(false);
     // Release both locks after the next paint so the freshly enabled choice
     // buttons can't be triggered by a tap that was meant for this button,
     // AND the choose-lock from the previous question doesn't block the first
@@ -141,7 +124,6 @@ export default function QuizPlayer({ chapter }: Props) {
   function handleRestart() {
     chooseLockRef.current = false;
     nextLockRef.current = false;
-    setSeed(Date.now());
     setCount(chapter.vocab.length);
     setPhase("ready");
   }
@@ -272,32 +254,15 @@ export default function QuizPlayer({ chapter }: Props) {
             <p className="text-xs font-bold uppercase tracking-widest text-indigo-400">
               Apa artinya?
             </p>
-            <div className="mt-4 inline-block rounded-2xl bg-gradient-to-br from-indigo-500 via-violet-500 to-rose-500 px-12 py-6 shadow-lg shadow-indigo-300/40 transition hover:scale-105">
-              <p className="text-5xl font-extrabold text-white drop-shadow-md sm:text-6xl">
+            <div className="mt-4 inline-block rounded-2xl bg-gradient-to-br from-indigo-500 via-violet-500 to-rose-500 px-10 py-5 shadow-lg shadow-indigo-300/40 transition hover:scale-105 sm:px-12 sm:py-6">
+              <p className="text-4xl font-extrabold text-white drop-shadow-md sm:text-6xl">
                 {q.prompt}
+              </p>
+              <p className="mt-2 text-base font-semibold tracking-wide text-white/85 sm:text-lg">
+                {q.romaji}
               </p>
             </div>
 
-            <div className="mt-5 min-h-[2rem]">
-              {showHint ? (
-                <p className="text-base font-semibold text-slate-500">
-                  {q.kana}
-                  {q.romaji ? (
-                    <span className="ml-2 text-sm italic text-slate-400">
-                      ({q.romaji})
-                    </span>
-                  ) : null}
-                </p>
-              ) : (
-                <button
-                  onClick={() => setShowHint(true)}
-                  className="inline-flex items-center gap-1 rounded-full bg-rose-50 px-3 py-1 text-sm font-semibold text-rose-600 ring-1 ring-rose-200 transition hover:bg-rose-100 hover:ring-rose-300"
-                >
-                  <span>💡</span>
-                  Tampilkan bacaan (hiragana)
-                </button>
-              )}
-            </div>
           </div>
 
           {/* Choices */}
@@ -377,7 +342,7 @@ export default function QuizPlayer({ chapter }: Props) {
                     <p>
                       <strong>Kurang tepat.</strong> Jawaban yang benar:{" "}
                       <strong>{q.choices[q.correctIndex]}</strong>{" "}
-                      <span className="text-slate-500">({q.kana})</span>
+                      <span className="text-slate-500">({q.kana} · {q.romaji})</span>
                     </p>
                   )}
                 </div>
@@ -457,7 +422,7 @@ export default function QuizPlayer({ chapter }: Props) {
                   className="flex items-center justify-between gap-3 px-4 py-2.5 text-sm"
                 >
                   <span className="font-mono font-bold text-indigo-950">{h.prompt}</span>
-                  <span className="text-xs text-slate-500">{h.kana}</span>
+                  <span className="text-xs text-slate-500">{h.kana} · {h.romaji}</span>
                   <span className="text-xs font-semibold text-emerald-700">
                     → {h.choices[h.correctIndex]}
                   </span>
@@ -498,7 +463,6 @@ export default function QuizPlayer({ chapter }: Props) {
               setCurrent(0);
               setChosen(null);
               setHistory([]);
-              setShowHint(false);
               setStreak(0);
               setPhase("playing");
             }}

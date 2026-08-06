@@ -22,7 +22,7 @@ export const chapter1: Chapter = {
     { id: "1-03", jp: "あなた", kana: "あなた", id_meaning: "kamu" },
     { id: "1-04", jp: "あのひと", kana: "あのひと", id_meaning: "orang itu (dia)" },
     { id: "1-05", jp: "あのかた", kana: "あのかた", id_meaning: "orang itu (sopan, sopan)" },
-    { id: "1-06", jp: "みなさん / 皆みなさん", kana: "みなさん / 皆みなさん", id_meaning: "semua orang" },
+    { id: "1-06", jp: "みなさん / 皆みなさん", kana: "みなさん", id_meaning: "semua orang" },
     { id: "1-07", jp: "～さん", kana: "～さん", id_meaning: "kakap/kawan (sopan)" },
     { id: "1-08", jp: "～ちゃん", kana: "～ちゃん", id_meaning: "akhiran untuk anak/anak perempuan" },
     { id: "1-09", jp: "～くん", kana: "～くん", id_meaning: "akhiran untuk anak laki-laki" },
@@ -45,10 +45,10 @@ export const chapter1: Chapter = {
     { id: "1-26", jp: "いくつ", kana: "いくつ", id_meaning: "berapa usia" },
     { id: "1-27", jp: "はい", kana: "はい", id_meaning: "ya" },
     { id: "1-28", jp: "いいえ", kana: "いいえ", id_meaning: "tidak/bukan" },
-    { id: "1-29", jp: "失しつ礼れい", kana: "失しつ礼れい", id_meaning: "permisi/selbaim baik" },
+    { id: "1-29", jp: "失しつ礼れい", kana: "しつれい", id_meaning: "permisi/selbaim baik" },
     { id: "1-30", jp: "はじめまして", kana: "はじめまして", id_meaning: "senang bertemu" },
     { id: "1-31", jp: "よろしく", kana: "よろしく", id_meaning: "senang bertemu (sopan)" },
-    { id: "1-32", jp: "お願ねがいします", kana: "お願ねがいします", id_meaning: "tolong/silakan" },
+    { id: "1-32", jp: "お願ねがいします", kana: "おねがいします", id_meaning: "tolong/silakan" },
     { id: "1-33", jp: "こちら", kana: "こちら", id_meaning: "ini/di sini" },
     { id: "1-34", jp: "～です", kana: "～です", id_meaning: "kata kerja 'ada'" },
     { id: "1-35", jp: "～は", kana: "～は", id_meaning: "kata partikel pembatas" },
@@ -56,12 +56,12 @@ export const chapter1: Chapter = {
     { id: "1-37", jp: "イギリス", kana: "イギリス", id_meaning: "Inggris" },
     { id: "1-38", jp: "インド", kana: "インド", id_meaning: "India" },
     { id: "1-39", jp: "インドネシア", kana: "インドネシア", id_meaning: "Indonesia" },
-    { id: "1-40", jp: "韓かん国こく", kana: "韓かん国こく", id_meaning: "Korea" },
+    { id: "1-40", jp: "韓かん国こく", kana: "かんこく", id_meaning: "Korea" },
     { id: "1-41", jp: "タイ", kana: "タイ", id_meaning: "Thailand" },
-    { id: "1-42", jp: "中ちゅう国ごく", kana: "中ちゅう国ごく", id_meaning: "Tiongkok/China" },
+    { id: "1-42", jp: "中ちゅう国ごく", kana: "ちゅうごく", id_meaning: "Tiongkok/China" },
     { id: "1-43", jp: "ドイツ", kana: "ドイツ", id_meaning: "Jerman" },
-    { id: "1-44", jp: "日本にほん", kana: "日本にほん", id_meaning: "Jepang" },
-    { id: "1-45", jp: "来くる", kana: "来くる", id_meaning: "datang" },
+    { id: "1-44", jp: "日本にほん", kana: "にほん", id_meaning: "Jepang" },
+    { id: "1-45", jp: "来くる", kana: "くる", id_meaning: "datang" },
   ],
 };
 
@@ -79,20 +79,20 @@ export const chapter2: Chapter = {
     { id: "2-04", jp: "この", kana: "この", id_meaning: "ini (penggunaan sebelum kata)" },
     { id: "2-05", jp: "その", kana: "その", id_meaning: "itu (penggunaan sebelum kata)" },
     { id: "2-06", jp: "あの", kana: "あの", id_meaning: "itu di sana (penggunaan sebelum kata)" },
-    { id: "2-07", jp: "本ほん", kana: "本ほん", id_meaning: "buku" },
-    { id: "2-08", jp: "辞じしょ", kana: "辞じしょ", id_meaning: "kamus" },
-    { id: "2-09", jp: "雑ざっし", kana: "雑ざっし", id_meaning: "majalah" },
-    { id: "2-10", jp: "新しんぶん", kana: "新しんぶん", id_meaning: "koran" },
+    { id: "2-07", jp: "本ほん", kana: "ほん", id_meaning: "buku" },
+    { id: "2-08", jp: "辞じしょ", kana: "じしょ", id_meaning: "kamus" },
+    { id: "2-09", jp: "雑ざっし", kana: "ざっし", id_meaning: "majalah" },
+    { id: "2-10", jp: "新しんぶん", kana: "しんぶん", id_meaning: "koran" },
     { id: "2-11", jp: "ノート", kana: "ノート", id_meaning: "buku catatan" },
-    { id: "2-12", jp: "手てちょう", kana: "手てちょう", id_meaning: "buku / kartu nama" },
-    { id: "2-13", jp: "名めいし", kana: "名めいし", id_meaning: "kartu nama" },
+    { id: "2-12", jp: "手てちょう", kana: "てちょう", id_meaning: "buku / kartu nama" },
+    { id: "2-13", jp: "名めいし", kana: "めいし", id_meaning: "kartu nama" },
     { id: "2-14", jp: "カード", kana: "カード", id_meaning: "kartu" },
     { id: "2-15", jp: "テーブルカード", kana: "テーブルカード", id_meaning: "kartu telepon" },
-    { id: "2-16", jp: "鉛えんぴつ", kana: "鉛えんぴつ", id_meaning: "pensil" },
+    { id: "2-16", jp: "鉛えんぴつ", kana: "えんぴつ", id_meaning: "pensil" },
     { id: "2-17", jp: "ボーるぺん", kana: "ボーるぺん", id_meaning: "pulpen" },
     { id: "2-18", jp: "シャープペンシる", kana: "シャープペンシる", id_meaning: "pensil mekanik" },
     { id: "2-19", jp: "かき", kana: "かき", id_meaning: "kunci" },
-    { id: "2-20", jp: "時とけい", kana: "時とけい", id_meaning: "jam" },
+    { id: "2-20", jp: "時とけい", kana: "とけい", id_meaning: "jam" },
     { id: "2-21", jp: "かさ", kana: "かさ", id_meaning: "payung" },
     { id: "2-22", jp: "かばん", kana: "かばん", id_meaning: "tas" },
     { id: "2-23", jp: "テープ", kana: "テープ", id_meaning: "pita kaset" },
@@ -102,14 +102,14 @@ export const chapter2: Chapter = {
     { id: "2-27", jp: "カメラ", kana: "カメラ", id_meaning: "kamera" },
     { id: "2-28", jp: "コンピューター", kana: "コンピューター", id_meaning: "komputer" },
     { id: "2-29", jp: "じどうしゃ", kana: "じどうしゃ", id_meaning: "mobil" },
-    { id: "2-30", jp: "机づくえ", kana: "机づくえ", id_meaning: "meja" },
+    { id: "2-30", jp: "机づくえ", kana: "つくえ", id_meaning: "meja" },
     { id: "2-31", jp: "いす", kana: "いす", id_meaning: "kursi" },
     { id: "2-32", jp: "チョコレート", kana: "チョコレート", id_meaning: "coklat" },
     { id: "2-33", jp: "コーヒー", kana: "コーヒー", id_meaning: "kopi" },
     { id: "2-34", jp: "えいが", kana: "えいが", id_meaning: "bahasa Inggris" },
     { id: "2-35", jp: "にほんご", kana: "にほんご", id_meaning: "bahasa Jepang" },
     { id: "2-36", jp: "ご", kana: "ご", id_meaning: "kata (partikel bahasa)" },
-    { id: "2-37", jp: "何なに", kana: "何なに", id_meaning: "apa" },
+    { id: "2-37", jp: "何なに", kana: "なに", id_meaning: "apa" },
     { id: "2-38", jp: "そう", kana: "そう", id_meaning: "begitu" },
     { id: "2-39", jp: "ちがう", kana: "ちがう", id_meaning: "berbeda" },
     { id: "2-40", jp: "そうです", kana: "そうです", id_meaning: "sepertinya begitu" },
@@ -266,13 +266,13 @@ export const chapter5: Chapter = {
     { id: "5-21", jp: "ひとりで", kana: "ひとりで", id_meaning: "sendirian" },
     { id: "5-22", jp: "せんしゅう", kana: "せんしゅう", id_meaning: "minggu lalu" },
     { id: "5-23", jp: "こんしゅう", kana: "こんしゅう", id_meaning: "minggu ini" },
-    { id: "5-24", jp: "来らいしゅう", kana: "来らいしゅう", id_meaning: "minggu depan" },
+    { id: "5-24", jp: "来らいしゅう", kana: "らいしゅう", id_meaning: "minggu depan" },
     { id: "5-25", jp: "せんげつ", kana: "せんげつ", id_meaning: "bulan lalu" },
     { id: "5-26", jp: "こんげつ", kana: "こんげつ", id_meaning: "bulan ini" },
-    { id: "5-27", jp: "来らいげつ", kana: "来らいげつ", id_meaning: "bulan depan" },
+    { id: "5-27", jp: "来らいげつ", kana: "らいげつ", id_meaning: "bulan depan" },
     { id: "5-28", jp: "きょねん", kana: "きょねん", id_meaning: "tahun lalu" },
     { id: "5-29", jp: "ことし", kana: "ことし", id_meaning: "tahun ini" },
-    { id: "5-30", jp: "来らいねん", kana: "来らいねん", id_meaning: "tahun depan" },
+    { id: "5-30", jp: "来らいねん", kana: "らいねん", id_meaning: "tahun depan" },
     { id: "5-31", jp: "いちがつ", kana: "いちがつ", id_meaning: "Januari" },
     { id: "5-32", jp: "なんげつ", kana: "なんげつ", id_meaning: "bulan berapa" },
     { id: "5-33", jp: "いちにち", kana: "いちにち", id_meaning: "1 hari" },
@@ -310,7 +310,7 @@ export const chapter6: Chapter = {
     { id: "6-04", jp: "たばこを すう", kana: "たばこを すう", id_meaning: "merokok" },
     { id: "6-05", jp: "みる", kana: "みる", id_meaning: "melihat" },
     { id: "6-06", jp: "きく", kana: "きく", id_meaning: "mendengar/menanyakan" },
-    { id: "6-07", jp: "読む", kana: "読む", id_meaning: "membaca" },
+    { id: "6-07", jp: "読む", kana: "よむ", id_meaning: "membaca" },
     { id: "6-08", jp: "かく", kana: "かく", id_meaning: "menulis" },
     { id: "6-09", jp: "かう", kana: "かう", id_meaning: "membeli" },
     { id: "6-10", jp: "とる", kana: "とる", id_meaning: "mengambil foto" },
@@ -391,7 +391,7 @@ export const chapter7: Chapter = {
     { id: "7-24", jp: "はな", kana: "はな", id_meaning: "bunga" },
     { id: "7-25", jp: "しゃつ", kana: "しゃつ", id_meaning: "kemeja" },
     { id: "7-26", jp: "ぷれぜんと", kana: "ぷれぜんと", id_meaning: "hadiah" },
-    { id: "7-27", jp: "に物も", kana: "に物も", id_meaning: "beban/baju" },
+    { id: "7-27", jp: "に物も", kana: "にもつ", id_meaning: "beban/baju" },
     { id: "7-28", jp: "おかね", kana: "おかね", id_meaning: "uang" },
     { id: "7-29", jp: "きっぷ", kana: "きっぷ", id_meaning: "tiket" },
     { id: "7-30", jp: "くりすます", kana: "くりすます", id_meaning: "Natal" },
@@ -482,7 +482,7 @@ export const chapter8: Chapter = {
 export const chapter9: Chapter = {
   slug: "bab-9",
   title: "Bab 9 — Keadaan & Sifat",
-  jp_title: "第9課 私の家族",
+  jp_title: "だい9か わたしの かぞく",
   description: "Sifat i-adjective",
   vocab: [
     { id: "9-01", jp: "悲しい", kana: "かなしい", id_meaning: "sed," },
@@ -508,7 +508,7 @@ export const chapter9: Chapter = {
 export const chapter10: Chapter = {
   slug: "bab-10",
   title: "Bab 10 — Tempat & Lokasi",
-  jp_title: "第10課 京都",
+  jp_title: "だい10か きょうと",
   description: "Lokasi, tempat umum",
   vocab: [
     { id: "10-01", jp: "いる", kana: "いる", id_meaning: "ada (orang/hewan)" },
@@ -535,7 +535,7 @@ export const chapter10: Chapter = {
 export const chapter11: Chapter = {
   slug: "bab-11",
   title: "Bab 11 — Waktu & Frekuensi",
-  jp_title: "第11課 時間に余裕",
+  jp_title: "だい11か じかんに よゆう",
   description: "Waktu, frekuensi, kemampuan",
   vocab: [
     { id: "11-01", jp: "分かる", kana: "わかる", id_meaning: "mengerti" },
@@ -559,7 +559,7 @@ export const chapter11: Chapter = {
 export const chapter12: Chapter = {
   slug: "bab-12",
   title: "Bab 12 — Cuaca & Warna",
-  jp_title: "第12課 日本の季節",
+  jp_title: "だい12か にほんの きせつ",
   description: "Cuaca, warna, makanan",
   vocab: [
     { id: "12-01", jp: "売る", kana: "うる", id_meaning: "menjual" },
@@ -585,7 +585,7 @@ export const chapter12: Chapter = {
 export const chapter13: Chapter = {
   slug: "bab-13",
   title: "Bab 13 — Benda Sehari-hari",
-  jp_title: "第13課 趣味",
+  jp_title: "だい13か しゅみ",
   description: "Benda, alat, stationery",
   vocab: [
     { id: "13-01", jp: "買う", kana: "かう", id_meaning: "membeli" },
@@ -611,7 +611,7 @@ export const chapter13: Chapter = {
 export const chapter14: Chapter = {
   slug: "bab-14",
   title: "Bab 14 — Kata Kerja U-ichi",
-  jp_title: "第14課 会社の電話",
+  jp_title: "だい14か かいしゃの でんわ",
   description: "Kata kerja u-ichi",
   vocab: [
     { id: "14-01", jp: "言う", kana: "いう", id_meaning: "mengatakan" },
@@ -637,7 +637,7 @@ export const chapter14: Chapter = {
 export const chapter15: Chapter = {
   slug: "bab-15",
   title: "Bab 15 — Kata Kerja & Pemberian",
-  jp_title: "第15課 病気",
+  jp_title: "だい15か びょうき",
   description: "Kata kerja ru + memberi",
   vocab: [
     { id: "15-01", jp: "貸す", kana: "かす", id_meaning: "meminjamkan" },
@@ -664,7 +664,7 @@ export const chapter15: Chapter = {
 export const chapter16: Chapter = {
   slug: "bab-16",
   title: "Bab 16 — Sifat Na-adjective",
-  jp_title: "第16課 私の国",
+  jp_title: "だい16か わたしの くに",
   description: "Sifat na-adjective",
   vocab: [
     { id: "16-01", jp: "上手", kana: "じょうず", id_meaning: "pintar" },
@@ -690,7 +690,7 @@ export const chapter16: Chapter = {
 export const chapter17: Chapter = {
   slug: "bab-17",
   title: "Bab 17 — Rumah & Lingkungan",
-  jp_title: "第17課 私の町",
+  jp_title: "だい17か わたしの まち",
   description: "Rumah, sampah,报纸",
   vocab: [
     { id: "17-01", jp: "忘れる", kana: "わすれる", id_meaning: "lupa" },
@@ -716,7 +716,7 @@ export const chapter17: Chapter = {
 export const chapter18: Chapter = {
   slug: "bab-18",
   title: "Bab 18 — Ruangan & Hunian",
-  jp_title: "第18課 私の部屋",
+  jp_title: "だい18か わたしの へや",
   description: "Ruangan, tatami, dinding",
   vocab: [
     { id: "18-01", jp: "できる", kana: "できる", id_meaning: "bisa (kemampuan)" },
@@ -742,7 +742,7 @@ export const chapter18: Chapter = {
 export const chapter19: Chapter = {
   slug: "bab-19",
   title: "Bab 19 — Kegiatan Akhir Pekan",
-  jp_title: "第19課 週末",
+  jp_title: "だい19か しゅうまつ",
   description: "Aktivitas akhir pekan",
   vocab: [
     { id: "19-01", jp: "思い出す", kana: "おもいだす", id_meaning: "mengingat kembali" },
@@ -768,7 +768,7 @@ export const chapter19: Chapter = {
 export const chapter20: Chapter = {
   slug: "bab-20",
   title: "Bab 20 — Kirim Pos & Telepon",
-  jp_title: "第20課 ファックス",
+  jp_title: "だい20か ファックス",
   description: "Kirim surat, telepon",
   vocab: [
     { id: "20-01", jp: "届く", kana: "とどく", id_meaning: "sampai" },
@@ -795,7 +795,7 @@ export const chapter20: Chapter = {
 export const chapter21: Chapter = {
   slug: "bab-21",
   title: "Bab 21 — Belajar & Ujian",
-  jp_title: "第21課 試験",
+  jp_title: "だい21か しけん",
   description: "Belajar, ujian, kebiasaan",
   vocab: [
     { id: "21-01", jp: "絶対", kana: "ぜったい", id_meaning: "pasti/absolut" },
@@ -820,7 +820,7 @@ export const chapter21: Chapter = {
 export const chapter22: Chapter = {
   slug: "bab-22",
   title: "Bab 22 — Rencana & Acara",
-  jp_title: "第22課 会議",
+  jp_title: "だい22か かいぎ",
   description: "Rencana, hadir, perkenalan",
   vocab: [
     { id: "22-01", jp: "案内する", kana: "あんないする", id_meaning: "memandu/menunjukkan" },
@@ -847,7 +847,7 @@ export const chapter22: Chapter = {
 export const chapter23: Chapter = {
   slug: "bab-23",
   title: "Bab 23 — Perasaan & Emosi",
-  jp_title: "第23課 事故",
+  jp_title: "だい23か じこ",
   description: "Emosi, perasaan, reaksi",
   vocab: [
     { id: "23-01", jp: "転ぶ", kana: "ころぶ", id_meaning: "jatuh terguling" },
@@ -872,7 +872,7 @@ export const chapter23: Chapter = {
 export const chapter24: Chapter = {
   slug: "bab-24",
   title: "Bab 24 — Pemberian & Undangan",
-  jp_title: "第24課 プレゼント",
+  jp_title: "だい24か プレゼント",
   description: "Memberi, hadiah, mengundang",
   vocab: [
     { id: "24-01", jp: "くれる", kana: "くれる", id_meaning: "memberi (kepada saya)" },
@@ -898,7 +898,7 @@ export const chapter24: Chapter = {
 export const chapter25: Chapter = {
   slug: "bab-25",
   title: "Bab 25 — Janji & Harapan",
-  jp_title: "第25課 約束",
+  jp_title: "だい25か やくそく",
   description: "Janji, harapan, urusan",
   vocab: [
     { id: "25-01", jp: "思い出す", kana: "おもいだす", id_meaning: "mengingat kembali" },
