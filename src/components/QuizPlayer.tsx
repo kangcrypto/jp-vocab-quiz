@@ -25,6 +25,7 @@ export default function QuizPlayer({ chapter }: Props) {
   const [current, setCurrent] = useState(0);
   const [chosen, setChosen] = useState<number | null>(null);
   const [history, setHistory] = useState<AnswerRecord[]>([]);
+  const [showRomaji, setShowRomaji] = useState(false);
   const [streak, setStreak] = useState(0);
   const [bestStreak, setBestStreak] = useState(0);
 
@@ -41,6 +42,7 @@ export default function QuizPlayer({ chapter }: Props) {
       setCurrent(0);
       setChosen(null);
       setHistory([]);
+      setShowRomaji(false);
       setStreak(0);
       chooseLockRef.current = false;
       nextLockRef.current = false;
@@ -111,6 +113,7 @@ export default function QuizPlayer({ chapter }: Props) {
     }
     setCurrent((c) => c + 1);
     setChosen(null);
+    setShowRomaji(false);
     // Release both locks after the next paint so the freshly enabled choice
     // buttons can't be triggered by a tap that was meant for this button,
     // AND the choose-lock from the previous question doesn't block the first
@@ -258,11 +261,29 @@ export default function QuizPlayer({ chapter }: Props) {
               <p className="text-4xl font-extrabold text-white drop-shadow-md sm:text-6xl">
                 {q.prompt}
               </p>
-              <p className="mt-2 text-base font-semibold tracking-wide text-white/85 sm:text-lg">
-                {q.romaji}
-              </p>
+              {showRomaji ? (
+                <p className="mt-2 text-base font-semibold tracking-wide text-white/85 sm:text-lg">
+                  {q.romaji}
+                </p>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => setShowRomaji(true)}
+                  className="mt-2 inline-flex items-center gap-1 rounded-full bg-white/15 px-3 py-1 text-sm font-semibold text-white/90 ring-1 ring-white/30 backdrop-blur transition hover:bg-white/25 hover:text-white sm:text-base"
+                >
+                  <span>🔤</span>
+                  <span>Tampilkan romaji</span>
+                </button>
+              )}
             </div>
 
+            <div className="mt-5 min-h-[2rem]">
+              {showRomaji ? (
+                <p className="text-sm font-semibold text-slate-500">
+                  Bacaan: <span className="font-bold text-indigo-700">{q.kana}</span>
+                </p>
+              ) : null}
+            </div>
           </div>
 
           {/* Choices */}
@@ -463,6 +484,7 @@ export default function QuizPlayer({ chapter }: Props) {
               setCurrent(0);
               setChosen(null);
               setHistory([]);
+              setShowRomaji(false);
               setStreak(0);
               setPhase("playing");
             }}
