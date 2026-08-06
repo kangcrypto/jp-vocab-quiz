@@ -276,14 +276,6 @@ export default function QuizPlayer({ chapter }: Props) {
                 </button>
               )}
             </div>
-
-            <div className="mt-5 min-h-[2rem]">
-              {showRomaji ? (
-                <p className="text-sm font-semibold text-slate-500">
-                  Bacaan: <span className="font-bold text-indigo-700">{q.kana}</span>
-                </p>
-              ) : null}
-            </div>
           </div>
 
           {/* Choices */}
