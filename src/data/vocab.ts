@@ -18,7 +18,7 @@ export const chapter1: Chapter = {
   jp_title: "はじめまして",
   vocab: [
     { id: "1-01", jp: "わたし", kana: "わたし", id_meaning: "saya" },
-    { id: "1-02", jp: "わたまたち", kana: "わたまたち", id_meaning: "kami" },
+    { id: "1-02", jp: "わたしたち", kana: "わたしたち", id_meaning: "kami" },
     { id: "1-03", jp: "あなた", kana: "あなた", id_meaning: "kamu" },
     { id: "1-04", jp: "あのひと", kana: "あのひと", id_meaning: "orang itu (dia)" },
     { id: "1-05", jp: "あのかた", kana: "あのかた", id_meaning: "orang itu (sopan, sopan)" },
