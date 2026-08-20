@@ -270,10 +270,12 @@ function buildQuestionFor(
   const otherContext = scored.filter((s) => s.score === 0);
 
   // Need 3 distractors. Prefer same-context, top up with chapter remainder.
+  // Skip any vocab whose meaning equals the target's meaning — that would
+  // produce two identical choices (e.g. チョコレート & ココア both "coklat").
   const ordered = [
     ...shuffle(sameContext, rng).map((s) => s.vocab),
     ...shuffle(otherContext, rng).map((s) => s.vocab),
-  ];
+  ].filter((v) => v.id_meaning !== target.id_meaning);
 
   const distractors = ordered
     .map((v) => v.id_meaning)
